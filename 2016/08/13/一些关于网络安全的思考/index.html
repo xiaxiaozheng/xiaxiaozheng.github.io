@@ -1,0 +1,962 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前两天在微博上看了一个视频《双语短片：中国超级APP正改变全球互联网》，讲微信所构建的帝国，当所有的事情都用微信这一个超级 App 完成之后，会是怎么样的？
+来自中国的超级APP如何改变整个互联网—在线播放—优酷网，视频高清在线观看http://v.youku.com/v_show/id_XMTY4MDIwMTkwOA==.html
+
+试想，如果某一个时间段里，微信的服务器出现了短暂的问题，又多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些关于网络安全的思考">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/一些关于网络安全的思考/index.html">
+<meta property="og:site_name" content="小正说事">
+<meta property="og:description" content="前两天在微博上看了一个视频《双语短片：中国超级APP正改变全球互联网》，讲微信所构建的帝国，当所有的事情都用微信这一个超级 App 完成之后，会是怎么样的？
+来自中国的超级APP如何改变整个互联网—在线播放—优酷网，视频高清在线观看http://v.youku.com/v_show/id_XMTY4MDIwMTkwOA==.html
+
+试想，如果某一个时间段里，微信的服务器出现了短暂的问题，又多">
+<meta property="og:image" content="http://yoursite.com/uploads/images/anquan.png">
+<meta property="og:updated_time" content="2016-09-16T16:20:13.404Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些关于网络安全的思考">
+<meta name="twitter:description" content="前两天在微博上看了一个视频《双语短片：中国超级APP正改变全球互联网》，讲微信所构建的帝国，当所有的事情都用微信这一个超级 App 完成之后，会是怎么样的？
+来自中国的超级APP如何改变整个互联网—在线播放—优酷网，视频高清在线观看http://v.youku.com/v_show/id_XMTY4MDIwMTkwOA==.html
+
+试想，如果某一个时间段里，微信的服务器出现了短暂的问题，又多">
+<meta name="twitter:image" content="http://yoursite.com/uploads/images/anquan.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 一些关于网络安全的思考 | 小正说事 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72788532-5', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小正说事</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Smile to your life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            博客首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            主题分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            文章标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-others">
+          <a href="http://zhuanlan.zhangxingqiu.cn" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            关于小正
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            个人简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-radio">
+          <a href="/radio" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            电台节目
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="/xiangce" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            一些图片
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一些关于网络安全的思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-13T18:55:19+08:00" content="2016-08-13">
+              2016-08-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活感悟/" itemprop="url" rel="index">
+                    <span itemprop="name">生活感悟</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/13/一些关于网络安全的思考/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/一些关于网络安全的思考/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/13/一些关于网络安全的思考/" class="leancloud_visitors" data-flag-title="一些关于网络安全的思考">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>前两天在微博上看了一个视频《双语短片：中国超级APP正改变全球互联网》，讲微信所构建的帝国，当所有的事情都用微信这一个超级 App 完成之后，会是怎么样的？</p>
+<p>来自中国的超级APP如何改变整个互联网—在线播放—优酷网，视频高清在线观看<a href="http://v.youku.com/v_show/id_XMTY4MDIwMTkwOA==.html" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTY4MDIwMTkwOA==.html</a></p>
+<img src="/uploads/images/anquan.png" class="full-image" alt="alt">
+<p>试想，如果某一个时间段里，微信的服务器出现了短暂的问题，又多少用户会受到直接影响，那个时候你能想象到其它可代替微信的应用吗？现在的微信似乎不再只属于腾讯了，更多时和这个国家的若干方面发生着直接或间接的联系。</p>
+<a id="more"></a>
+<p>如果是像美剧《疑犯追踪》里所讲述的场景发生在了当下的生活中，后果不堪设想。</p>
+<p>2</p>
+<p>我曾经粗浅的了解些社会工程学相关知识，也曾黑过一些陌生人的各类网络账户，包括邮箱、微博、京东、淘宝、iCloud 账号等，对于那些未进一步绑定邮箱或者手机号的平台，账号信息被盗取之后，其基本上是完全不知情。</p>
+<p>当然得说明的是，我可没有做非法、违规的事情，更多的时候只是想测试某种方法的正确性以及可能性罢了。</p>
+<p>所以我期间蛮建议各位把自己常用的且重要的几个平台账号，都绑定上邮箱、手机号，并且设置异地登陆提醒或者设备锁，能够很大程度上减少被黑的可能性。</p>
+<p>3</p>
+<p>前两年，刚入手了一个小米手机后，总是喜欢把拍摄的照片、通讯录、短信等信息都上传到小米云备份，后来还担心小米云存不下了，专门又在百度云里开启了自动备份，试图通过这种双重备份的方式来避免资料的丢失。</p>
+<p>以前注册百度账号时，为了方便自己输密码，用了一个常用的一串数字，并且将这个做法运用在了自己之后的很多密码设定中，可是，到了后来在知乎以及相关论坛上看了社会工程学中关于密码分析的文章后，我开始极为担心。</p>
+<p>所以后来我果断的修改了自己常用且重要的各个平台的账号密码，包括绑定的邮箱以及手机号码等，基本确保每个平台账号都不一样，减少被撞库的可能性。</p>
+<p>4</p>
+<p>不要觉得这离你很遥远。</p>
+<p>你是否在大多数平台上用的相同的邮箱注册、手机号，以及相同的密码登陆？</p>
+<p>一旦其中一个平台的账号信息泄露或者被黑，基本上其他平台上的信息不保了。</p>
+<p>在我黑成功的一些案例中，大多数是一个邮箱账号、一个密码通用。知道了你 A 平台的账号密码之后，立即去 B\C\D\E 等若干网站尝试，瞎猫也总能碰上一个死耗子的。</p>
+<p>再举个实际点的案例，大部分的人的百度账号密码设置极为简单，你可能觉得百度上最多就是几部片儿而已，没有其他重要的东西也就无关紧要。可实际上如果其他人再根据你百度账号，登陆到了携程、去哪儿等之后，又能够轻松的获取到你的身份证信息、手机号码、姓名等，有了这些信息之后，再继续黑其他的账号极为容易。</p>
+<p>5</p>
+<p>有百度账号的筒子们，不知道是否注意到了这个：</p>
+<p>（这是我个人百度账号页的截图，我关闭了历史记录的功能）</p>
+<p>（这是未关闭百度历史记录功能的样子，所有的检索词以及部分查看的页面的地址都可以被查看到）</p>
+<p>试想，如果你的百度账号被盗，而且你的历史记录功能一直开着（默认是开启的），也就意味着除了百度云里存储的东西会被他人查看到，自己的相关检索行为也都能被查看到，是不是有点恐怖。</p>
+<p>既然写到这里，我建议各位有百度账号的同学，可以考虑把这个历史记录的功能关闭掉。</p>
+<p>6</p>
+<p>（这里是我个人的谷歌账号截图）</p>
+<p>你是不是和我一样，习惯于用浏览器存储一些网站的常用登陆账号信息，这些浏览器的存在确实帮了我们很大的忙，节省了不必要的时间浪费。</p>
+<p>可是你想过若是你登陆浏览器的账号被盗了，那怎么办才好？</p>
+<p>我曾经尝试过黑过他人的谷歌账号（未开启二次验证），登陆之后在相关页面，可以直接查看到其设置过自动登陆的网站，使用的账号以及密码信息（可明文查看）。</p>
+<p>所以有的时候，即使像谷歌、淘宝、腾讯这种本身网络安全水准较高的互联网公司，能够给你提供账号最高权限的安全，但是你不会用、或者不知道，那也是无济于事。责任在你自己，而不在这些平台了。</p>
+<p>7</p>
+<p>暂时想到这些，想到哪里写哪里，有些零散勿怪。</p>
+<p>一些 Tips：</p>
+<p>· 开启腾讯、淘宝、百度、谷歌等重要账号的二次验证，或者是设备锁等安全功能；<br>· 邮箱密码定期换，别设置得太简单了，开启异地登陆保护功能，以及有任何异常尽可能的短信提醒；<br>· 不要一张票座全程，一个密码搞全网，重要的事情都要说三遍，重要的网站，密码至少包括三样：大小写、数字、特殊符号；<br>· 当然如果你没有做什么见不得人或者不适合被公开的信息，那么本文对你不怎么适用；<br>· 一些少儿不宜且不适合传播的影像资料、关键技术文档等内容，存档在你本地的电脑就好，也最好加个密。如果是放在 iCloud 里，说不定哪天可能就被放到网上穿越了，想想美国好莱坞的明显们，是吧。<br>· 当你的所有信息都被数据化的时候，你除了有权利享受它带来的便捷外，还有与之匹配的风险；网络安全，真的是越来越重要，也越来越值得被关注了。</p>
+<p>作者：夏小正<br>链接：<a href="https://zhuanlan.zhihu.com/p/21999911" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/21999911</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/wechat-qcode.jpg" alt="夏小正 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>想查看夏小正的更多文章，可以扫描二维码，关注微信公众号【小正说事】。</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/webpay.png" alt="夏小正 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/alipay.jpg" alt="夏小正 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络安全/" rel="tag">#网络安全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/15/recently/" rel="next" title="一根鱼刺，让我第一次走进急诊室">
+                <i class="fa fa-chevron-left"></i> 一根鱼刺，让我第一次走进急诊室
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/26/写在卸载游戏 LOL 后的第 5 天/" rel="prev" title="写在卸载游戏 LOL 后的第 5 天">
+                写在卸载游戏 LOL 后的第 5 天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/13/一些关于网络安全的思考/"
+           data-title="一些关于网络安全的思考" data-url="http://yoursite.com/2016/08/13/一些关于网络安全的思考/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="夏小正" />
+          <p class="site-author-name" itemprop="name">夏小正</p>
+          <p class="site-description motion-element" itemprop="description">岁月像一场有去无回的旅行，好的坏的都是风景。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gftvlie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/gftvlie" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/gftvlie" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xiaxiaozheng" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐访问
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.funlee.cn/" title="Funlee Blog" target="_blank">Funlee Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.inkpaper.io/blog/" title="Maoshu Blog" target="_blank">Maoshu Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fatelei.github.io/" title="Fatelei Blog" target="_blank">Fatelei Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://notes.iissnan.com/" title="Iissnan Blog" target="_blank">Iissnan Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hi-andy.com/" title="Andy Blog" target="_blank">Andy Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xlzd.me/" title="Xlzd Blog" target="_blank">Xlzd Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dotdoting.com/" title="ZBY Blog" target="_blank">ZBY Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://theme-next.iissnan.com/" title="Next doc" target="_blank">Next doc</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leancloud.cn" title="Leancloud" target="_blank">Leancloud</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zybuluo.com/mdeditor" title="Markdown online" target="_blank">Markdown online</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小正</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiaxiaozheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("i4DLRlYqtL8GVbsCX0AxcTiX-gzGzoHsz", "wqGXADG5rjXzIKSMM1Nj1bqN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

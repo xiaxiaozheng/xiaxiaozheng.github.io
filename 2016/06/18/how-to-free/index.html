@@ -1,0 +1,957 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这里是背景
+前两天一直在忙着换新的窝，在北京租房真的是一年比一年贵啊，说多了都是泪，大概的背景就是这样。
+昨晚搬到了新的住所，和另外两个室友整租的两居室，由于时间仓促，并没有来得及开通宽带，只是打了电话给运营商，让工作人员尽快来安装。
+所以昨天晚上都是在没有 WiFi 的情况下度过，好难过，度分如年。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次简单的社会工程学案例">
+<meta property="og:url" content="http://yoursite.com/2016/06/18/how-to-free/index.html">
+<meta property="og:site_name" content="小正说事">
+<meta property="og:description" content="这里是背景
+前两天一直在忙着换新的窝，在北京租房真的是一年比一年贵啊，说多了都是泪，大概的背景就是这样。
+昨晚搬到了新的住所，和另外两个室友整租的两居室，由于时间仓促，并没有来得及开通宽带，只是打了电话给运营商，让工作人员尽快来安装。
+所以昨天晚上都是在没有 WiFi 的情况下度过，好难过，度分如年。">
+<meta property="og:updated_time" content="2016-07-19T08:34:54.278Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次简单的社会工程学案例">
+<meta name="twitter:description" content="这里是背景
+前两天一直在忙着换新的窝，在北京租房真的是一年比一年贵啊，说多了都是泪，大概的背景就是这样。
+昨晚搬到了新的住所，和另外两个室友整租的两居室，由于时间仓促，并没有来得及开通宽带，只是打了电话给运营商，让工作人员尽快来安装。
+所以昨天晚上都是在没有 WiFi 的情况下度过，好难过，度分如年。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 一次简单的社会工程学案例 | 小正说事 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72788532-5', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小正说事</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Smile to your life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            博客首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            主题分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            文章标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-others">
+          <a href="http://zhuanlan.zhangxingqiu.cn" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            关于小正
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            个人简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-radio">
+          <a href="/radio" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            电台节目
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="/xiangce" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            一些图片
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一次简单的社会工程学案例
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-18T09:33:58+08:00" content="2016-06-18">
+              2016-06-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/干货分享/" itemprop="url" rel="index">
+                    <span itemprop="name">干货分享</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/18/how-to-free/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/how-to-free/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/18/how-to-free/" class="leancloud_visitors" data-flag-title="一次简单的社会工程学案例">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="这里是背景"><a href="#这里是背景" class="headerlink" title="这里是背景"></a>这里是背景</h2><hr>
+<p>前两天一直在忙着换新的窝，在北京租房真的是一年比一年贵啊，说多了都是泪，大概的背景就是这样。</p>
+<p>昨晚搬到了新的住所，和另外两个室友整租的两居室，由于时间仓促，并没有来得及开通宽带，只是打了电话给运营商，让工作人员尽快来安装。</p>
+<p>所以昨天晚上都是在没有 WiFi 的情况下度过，好难过，度分如年。</p>
+<a id="more"></a>
+<h2 id="故事开始"><a href="#故事开始" class="headerlink" title="故事开始"></a>故事开始</h2><hr>
+<p>作为一个伪技术人员怎么心甘于此呢。打开电脑看了下能够检索到的所有 WiFi 列表，尝试用一些常用的密码去登陆，但效果不佳，无果；</p>
+<p>接着我用手机的数据流量下载了一个 WiFi 万能钥匙，当然这里不是广告，而确实是一种途径。用这个软件打开之后，扫描了附近的 WiFi。</p>
+<p>显示有一个 WiFi 可以用网络上存储的密码链接，但是我点击之后，一直加载这个窗口，过了好几分钟都没有动静，无奈也只有放弃这个办法。</p>
+<p>就在我打算放弃的时候，我看到了两个特别的 WiFi 名字，似曾相识。</p>
+<p>ziroom 和 ziroom XXXX</p>
+<p>想了想，这代表的含义：</p>
+<p>第一，我们这栋楼有自如的房源，且信号还不算太差，最多间隔两层楼；<br>第二，后面的数字应该是代表的第几单元、第几楼、第几户，再仔细推算，就不就是我们楼下么；<br>因为我以前租过一段时间自如的房子，所以清楚自如的房子基本上都是安装好了宽带的，且 WiFi 的密码都会贴在客厅里，不过没有办法直接去敲门，然后问密码啦，当时也已是晚上十点了。</p>
+<p>又根据我之前对密码学的一些了解，猜想是否可能设置的是这个自如房间关键的联系电话。接着立即在手机上搜了下自如上关于我这个小区的房源，果不其然找到了信息，兴奋的用网站上登记的管家手机号码作为密码进行了尝试，转了一会儿圈圈之后，依旧提示密码错误。</p>
+<p>啊，这个时候我其实已经是奔溃了的。</p>
+<h2 id="高潮来了"><a href="#高潮来了" class="headerlink" title="高潮来了"></a>高潮来了</h2><hr>
+<p>不过，怎么可能会难倒我呢，改用社会工程学里必备的一个技能。</p>
+<p>正如前面提到，因为以前住过自如，知道自如的房子都会有管家服务，且可以通过微信客服咨询或者投诉之类的。我靠，写到这里，越来越觉得这像是在给自如打广告一样。</p>
+<p>所以我决定换个角度去突破，具体见截图：</p>
+<p>恩，没错，因为昨天晚上的时间比较晚了，客服可能下班了，所以我今早上在自如的微信客服上留了言。很快那边回复了我，当然一开始这个客服也明确告诉我，客厅的留言板上应该是有宽带信息的，但我假装没有看到，还是继续询问她，最终她告诉了我密码。</p>
+<p>当我看到她发过来了密码时，我是异常高兴的，但转眼一想，很有可能密码已经被住户修改了。</p>
+<p>接着我在微信群里，让我还在房间里的室友（因为我早上九点上班，那时已经公司了），用这个默认的密码试了试，然后就有了这个截图。</p>
+<p>恩，整个过程就是这样。</p>
+<p>而现在你之所以能过看到这篇文章，也要感谢隔壁老王自如的 WiFi。当然我们并不提倡蹭邻居 WiFi 的行为，我联系的宽带运营商也将在这两天上门安装，所以本文仅是分享一下我亲历的故事。</p>
+<h2 id="最后总结几点："><a href="#最后总结几点：" class="headerlink" title="最后总结几点："></a>最后总结几点：</h2><hr>
+<ul>
+<li>如果你懂得如何设置路由器后台、以及 WiFi 名称和密码的话，建议你定期修改，不然就可能像我一样。</li>
+<li>多了解一些常识，说不定在某一个时刻就会有用武之地。</li>
+<li>如果对楼主的这一系列行为感兴趣，建议你谷歌 社会工程学，你会大吃一惊的，相信我。</li>
+<li>自如的客服很贴心，真的。</li>
+<li>希望自如别来找我麻烦啊。</li>
+</ul>
+<hr>
+<p>推荐一个我之前关于 WiFi 安全的回答 <a href="https://www.zhihu.com/question/40543633/answer/88484747" target="_blank" rel="external">https://www.zhihu.com/question/40543633/answer/88484747</a></p>
+<p>文章里面的很多图片未搬运，查看原文到这里：<a href="https://zhuanlan.zhihu.com/p/21360442" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/21360442</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/wechat-qcode.jpg" alt="夏小正 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>想查看夏小正的更多文章，可以扫描二维码，关注微信公众号【小正说事】。</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/webpay.png" alt="夏小正 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/alipay.jpg" alt="夏小正 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络安全/" rel="tag">#网络安全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/31/huiyi/" rel="next" title="一些和父亲的回忆">
+                <i class="fa fa-chevron-left"></i> 一些和父亲的回忆
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/09/wenxintishi/" rel="prev" title="有感于中国人民大学的体育场的一张「 温馨提示 」">
+                有感于中国人民大学的体育场的一张「 温馨提示 」 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/18/how-to-free/"
+           data-title="一次简单的社会工程学案例" data-url="http://yoursite.com/2016/06/18/how-to-free/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="夏小正" />
+          <p class="site-author-name" itemprop="name">夏小正</p>
+          <p class="site-description motion-element" itemprop="description">岁月像一场有去无回的旅行，好的坏的都是风景。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gftvlie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/gftvlie" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/gftvlie" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xiaxiaozheng" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐访问
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.funlee.cn/" title="Funlee Blog" target="_blank">Funlee Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.inkpaper.io/blog/" title="Maoshu Blog" target="_blank">Maoshu Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fatelei.github.io/" title="Fatelei Blog" target="_blank">Fatelei Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://notes.iissnan.com/" title="Iissnan Blog" target="_blank">Iissnan Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hi-andy.com/" title="Andy Blog" target="_blank">Andy Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xlzd.me/" title="Xlzd Blog" target="_blank">Xlzd Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dotdoting.com/" title="ZBY Blog" target="_blank">ZBY Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://theme-next.iissnan.com/" title="Next doc" target="_blank">Next doc</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leancloud.cn" title="Leancloud" target="_blank">Leancloud</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zybuluo.com/mdeditor" title="Markdown online" target="_blank">Markdown online</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这里是背景"><span class="nav-number">1.</span> <span class="nav-text">这里是背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故事开始"><span class="nav-number">2.</span> <span class="nav-text">故事开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高潮来了"><span class="nav-number">3.</span> <span class="nav-text">高潮来了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后总结几点："><span class="nav-number">4.</span> <span class="nav-text">最后总结几点：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小正</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiaxiaozheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("i4DLRlYqtL8GVbsCX0AxcTiX-gzGzoHsz", "wqGXADG5rjXzIKSMM1Nj1bqN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
